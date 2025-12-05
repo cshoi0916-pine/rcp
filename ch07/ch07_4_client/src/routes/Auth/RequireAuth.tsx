@@ -6,12 +6,13 @@ import {useAuth} from "../../contexts"
 type RequireAuthProps = {}
 
 const RequireAuth: FC<PropsWithChildren<RequireAuthProps>> = ({children}) => {
-  const {loggedUser} = useAuth()
+  const {jwt} = useAuth()
+  // const {loggedUser} = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!loggedUser) navigate(-1)
-  }, [loggedUser, navigate])
+    if (!jwt) navigate("./login")
+  }, [jwt, navigate])
   return <>{children}</>
 }
 
